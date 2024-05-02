@@ -16,7 +16,6 @@ const Register = () => {
   // form function
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(name,email,password,phone,address,answer);
     try {
       const res = await axios.post("/api/v1/auth/register", {
         name,
@@ -27,7 +26,8 @@ const Register = () => {
         answer,
       });
       if (res && res.data.success) {
-        toast.success(res.data && res.data.message);
+        //toast.success(res.data && res.data.message);
+        toast.success("User Register Successfully");
         navigate("/login");
       } else {
         toast.error(res.data.message);
