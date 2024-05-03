@@ -30,7 +30,6 @@ const Login = () => {
         });
         localStorage.setItem("auth", JSON.stringify(res.data));
         navigate(location.state || "/");
-        // navigate("/");
       } else {
         toast.error(res.data.message);
       }
@@ -41,14 +40,13 @@ const Login = () => {
   };
   return (
     <Layout title="Register - Ecommer App">
-      <div className="form-container " style={{ minHeight: "90vh" }}>
+      <div className="form-container ">
         <form onSubmit={handleSubmit}>
           <h4 className="title">LOGIN FORM</h4>
 
           <div className="mb-3">
             <input
               type="email"
-              autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="form-control"
@@ -71,7 +69,7 @@ const Login = () => {
           <div className="mb-3">
             <button
               type="button"
-              className="btn forgot-btn"
+              className="btn btn-primary"
               onClick={() => {
                 navigate("/forgot-password");
               }}
