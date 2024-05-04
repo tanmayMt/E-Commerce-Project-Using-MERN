@@ -58,7 +58,6 @@ const ProductDetails = () => {
       </div>
       <hr />
       <div className="row container">
-        {/* Similar Product */}
         <h6>Similar Products</h6>
         {relatedProducts.length < 1 && (
           <p className="text-center">No Similar Products found</p>
