@@ -4,6 +4,7 @@ import Layout from "./../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Profile = () => {
   //context
   const [auth, setAuth] = useAuth();
@@ -13,6 +14,8 @@ const Profile = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+
+  const navigate = useNavigate();
 
   //get user data
   useEffect(() => {
