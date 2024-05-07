@@ -6,6 +6,7 @@ import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
 import { Badge } from "antd";
+
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
@@ -21,7 +22,7 @@ const Header = () => {
   };
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -36,7 +37,7 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <Link to="/" className="navbar-brand">
-              🛒 Medicure
+              🛒 Ecommerce App
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <SearchInput />
@@ -71,6 +72,7 @@ const Header = () => {
                   ))}
                 </ul>
               </li>
+
               {!auth?.user ? (
                 <>
                   <li className="nav-item">
@@ -92,7 +94,7 @@ const Header = () => {
                       href="#"
                       role="button"
                       data-bs-toggle="dropdown"
-                      aria-expanded="false"
+                      style={{ border: "none" }}
                     >
                       {auth?.user?.name}
                     </NavLink>
@@ -110,7 +112,7 @@ const Header = () => {
                       <li>
                         <NavLink
                           onClick={handleLogout}
-                          to="/"
+                          to="/login"
                           className="dropdown-item"
                         >
                           Logout
@@ -121,11 +123,11 @@ const Header = () => {
                 </>
               )}
               <li className="nav-item">
-                 <Badge count={cart?.length} showZero>
                 <NavLink to="/cart" className="nav-link">
-                  Cart
+                  <Badge count={cart?.length} showZero offset={[10, -5]}>
+                    Cart
+                  </Badge>
                 </NavLink>
-                </Badge>
               </li>
             </ul>
           </div>

@@ -3,7 +3,7 @@ import UserMenu from "../../components/Layout/UserMenu";
 import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
-// import moment from "moment";
+import moment from "moment";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -27,6 +27,7 @@ const Orders = () => {
           <div className="col-md-3">
             <UserMenu />
           </div>
+          {/* <p>{JSON.stringify(orders,null,4)}</p> */}
           <div className="col-md-9">
             <h1 className="text-center">All Orders</h1>
             {orders?.map((o, i) => {
@@ -38,7 +39,7 @@ const Orders = () => {
                         <th scope="col">#</th>
                         <th scope="col">Status</th>
                         <th scope="col">Buyer</th>
-                        <th scope="col"> date</th>
+                        {/* <th scope="col"> date</th> */}
                         <th scope="col">Payment</th>
                         <th scope="col">Quantity</th>
                       </tr>
@@ -70,10 +71,17 @@ const Orders = () => {
                           <p>{p.name}</p>
                           <p>{p.description.substring(0, 30)}</p>
                           <p>Price : {p.price}</p>
+                          <button
+                            className="btn btn-outline-warning"
+                            // className="btn btn-danger"
+                            >
+                            Cancel Order
+                         </button>
                         </div>
                       </div>
                     ))}
                   </div>
+                  <br></br>
                 </div>
               );
             })}

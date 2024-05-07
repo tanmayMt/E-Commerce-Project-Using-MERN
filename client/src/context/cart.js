@@ -11,7 +11,7 @@ const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider value={[cart, setCart]}>
-      {children} 
+      {children}
     </CartContext.Provider>
   );
 };
@@ -19,4 +19,4 @@ const CartProvider = ({ children }) => {
 // custom hook
 const useCart = () => useContext(CartContext);
 
-export { useCart, CartProvider }; 
+export { useCart, CartProvider }

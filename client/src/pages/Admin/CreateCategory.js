@@ -11,7 +11,7 @@ const CreateCategory = () => {
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(null);
   const [updatedName, setUpdatedName] = useState("");
-  // //handle Form
+  //handle Form
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -26,7 +26,7 @@ const CreateCategory = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("somthing went wrong in input form");
+      // toast.error("somthing went wrong in input form");
     }
   };
 
@@ -47,7 +47,7 @@ const CreateCategory = () => {
     getAllCategory();
   }, []);
 
-  // update category
+  //update category
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
