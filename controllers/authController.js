@@ -219,11 +219,14 @@ export const getOrdersController = async (req, res) => {
 //orders
 export const getAllOrdersController = async (req, res) => {
   try {
+    console.log("Hi");
     const orders = await orderModel
       .find({})
       .populate("products", "-photo")
       .populate("buyer", "name")
-      .sort({ createdAt: "-1" });
+      .sort({ createdAt: -1 });
+      console.log("Hello");
+      console.log(orders);
     res.json(orders);
   } catch (error) {
     console.log(error);
