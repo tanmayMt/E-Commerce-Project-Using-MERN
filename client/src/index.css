@@ -145,7 +145,84 @@
 }
 
 .dashboard-menu h4 {
-    background-color: #434343 !important;
-    color: white;
+    background-color: hsl(21, 66%, 51%) !important;
+    color: hwb(78 19% 14%);
+    box-shadow: orange;
     padding: 20px 0px;
+}
+.profile-card {
+    background-color: hsl(0, 3%, 7%);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1),
+        /* Inner shadow */
+        0 5px 10px hsl(19, 86%, 51%),
+        /* Orange shadow */
+        5px 5px 15px rgba(0, 128, 255, 0.2);
+    /* Blue shadow */
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: orange;
+}
+
+p {
+    margin-bottom: 0.5rem;
+    color: hsl(316, 63%, 50%);font-size: 1.2rem;
+}
+
+
+.unblock-btn{
+        background-color: black;
+        color: white;
+}
+
+
+
+
+/* Address Form */
+.address-form {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem auto;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 400px;
+}
+
+.address-form h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.address-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.address-form input[type="text"] {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+}
+
+.address-form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.address-form button:hover {
+    background-color: #3e8e41;
 }

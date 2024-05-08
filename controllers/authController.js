@@ -216,7 +216,7 @@ export const getOrdersController = async (req, res) => {
     });
   }
 };
-//orders
+//orders --admin
 export const getAllOrdersController = async (req, res) => {
   try {
     console.log("Hi");
@@ -258,3 +258,25 @@ export const orderStatusController = async (req, res) => {
     });
   }
 };
+
+//All users
+export const getAllUsersController = async (req, res) => {
+  try {
+    console.log("Hi");
+    const users = await userModel
+      .find({role:"0"});
+      console.log("Hello");
+      console.log(users);
+    res.json(users);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error WHile Geting Orders",
+      error,
+    });
+  }
+}
+
+
+

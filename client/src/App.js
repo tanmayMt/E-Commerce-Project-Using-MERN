@@ -24,6 +24,7 @@ import Categories from "./pages/Categories";
 import CategoryProduct from "./pages/CategoryProduct";
 import CartPage from "./pages/CartPage";
 import AdminOrders from "./pages/Admin/AdminOrders";
+import AddressForm from "./pages/AddressForm";
 function App() {
   return (
     <>
@@ -35,9 +36,11 @@ function App() {
         <Route path="/category/:slug" element={<CategoryProduct />} />
         <Route path="/search" element={<Search />} />
         <Route path="/dashboard" element={<PrivateRoute />}>
+        
           <Route path="user" element={<Dashboard />} />
           <Route path="user/orders" element={<Orders />} />
           <Route path="user/profile" element={<Profile />} />
+          <Route path="user/address-update" element={<AddressForm/>}/>
         </Route>
         <Route path="/dashboard" element={<AdminRoute />}>
           <Route path="admin" element={<AdminDashboard />} />
