@@ -13,6 +13,12 @@ const UserMenu = () => {
             Profile
           </NavLink>
           <NavLink
+            to="/dashboard/user/address-update"
+            className="list-group-item list-group-item-action"
+          >
+            Address 
+          </NavLink>
+          <NavLink
             to="/dashboard/user/orders"
             className="list-group-item list-group-item-action"
           >

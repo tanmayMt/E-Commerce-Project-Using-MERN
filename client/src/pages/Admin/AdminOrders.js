@@ -101,9 +101,9 @@ const AdminOrders = () => {
                         />
                       </div>
                       <div className="col-md-8">
-                        <p>{p.name}</p>
+                        <b><h2>{p.name}</h2></b>
                         <p>{p.description.substring(0, 30)}</p>
-                        <p>Price : {p.price}</p>
+                        <p>Price : <b>{p.price}</b></p>
                       </div>
                     </div>
                   ))}

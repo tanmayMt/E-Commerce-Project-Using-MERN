@@ -22,7 +22,7 @@ const Users = () => {
   }, [auth?.token]);
   return (
     <Layout title={"Dashboard - All Users"}>
-      <div className="container-fluid m-3 p-3">
+      <div className="container-fluid m-2 p-2">
         <div className="row">
           <div className="col-md-3">
             <AdminMenu />

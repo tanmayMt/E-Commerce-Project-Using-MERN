@@ -168,6 +168,11 @@ h2 {
     margin-bottom: 1rem;
     color: orange;
 }
+h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: orange;
+}
 
 p {
     margin-bottom: 0.5rem;
@@ -225,4 +230,12 @@ p {
 
 .address-form button:hover {
     background-color: #3e8e41;
+}
+
+
+
+
+
+.price-admin-order{
+    color: darkviolet;
 }

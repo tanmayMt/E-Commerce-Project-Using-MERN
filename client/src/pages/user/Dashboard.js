@@ -13,10 +13,16 @@ const Dashboard = () => {
           </div>
           <div className="col-md-9">
             <div className="card w-75 p-3">
-              <h3>{auth?.user?.name}</h3>
-              <h3>{auth?.user?.email}</h3>
-              <h3>{auth?.user?.address}</h3>
-            </div>
+              {/* <h3><b>Name </b>{auth?.user?.name}</h3> */}
+              <h2> <b>Name :</b> {auth?.user?.name}</h2><br></br>
+              {/* <b>E-Mail </b><h3>{auth?.user?.email}</h3>
+              <b>Address </b><h3>{auth?.user?.address}</h3> */}
+              
+
+                            {/* <div> */}
+              <p> <b>Email :</b> {auth?.user?.email}</p>
+              <p> <b>Contact :</b> {auth?.user?.phone}</p>
+              </div>
           </div>
         </div>
       </div>

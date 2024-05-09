@@ -131,7 +131,8 @@ const CartPage = () => {
                   <h5>{auth?.user?.address}</h5>
                   <button
                     className="btn btn-outline-warning"
-                    onClick={() => navigate("/dashboard/user/profile")}
+                    //onClick={() => navigate("/dashboard/user/profile")}
+                    onClick={() => navigate("/dashboard/user/address-update")}
                   >
                     Update Address
                   </button>
@@ -142,7 +143,12 @@ const CartPage = () => {
                 {auth?.token ? (
                   <button
                     className="btn btn-outline-warning"
-                    onClick={() => navigate("/dashboard/user/profile")}
+                    //onClick={() => navigate("/dashboard/user/profile")}
+                    onClick={() => navigate("/dashboard/user/address-update", {
+                        state: "/cart",})
+                    }
+                      
+                    
                   >
                     Update Address
                   </button>
