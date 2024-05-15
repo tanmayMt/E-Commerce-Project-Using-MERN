@@ -4,6 +4,7 @@ import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
+import toast from "react-hot-toast";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -11,11 +12,11 @@ const Orders = () => {
 
   //
   const [status, setStatus] = useState([
-    "Processing",
+    "Order Placed",
     "Shipped",
-    "Dispatched",
-    "Deliverd",
-    "Canceled",
+    "Delivered",
+    "Cancelled",
+    "Returned",
   ]);
   const [changeStatus, setCHangeStatus] = useState("");
 
@@ -35,10 +36,19 @@ const Orders = () => {
     //Cencel Order
   const handleChange = async (orderId) => {
     try {
-      const { data } = await axios.put(`/api/v1/auth/order-status/${orderId}`, {
-        status: "cancel",
+      const res  = await axios.put(`/api/v1/auth/order-status/${orderId}`, {
+        status: "Cancelled",
       });
-      getOrders();
+      if(res.data.success)
+        {
+          toast.success(res.data.message);
+          getOrders();
+        }
+        else{
+          toast.error(res.data.message);
+    
+        }
+    
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +64,7 @@ const Orders = () => {
           
           <div className="col-md-9">
             <h1 className="text-center">All Orders</h1>
-            <p>{JSON.stringify(orders,null,4)}</p>
+            {/* <p>{JSON.stringify(orders,null,4)}</p> */}
             {orders?.map((o, i) => {
               return (
                 <div className="border shadow">
@@ -100,7 +110,7 @@ const Orders = () => {
                         </div>
                       </div>
                         ))}
-                      </div>
+                      </div>{o?.status==="Order Placed"? (<>
                   <button
                     className="btn btn-outline-warning"
                     // className="btn btn-danger"
@@ -108,7 +118,7 @@ const Orders = () => {
                     defaultValue={o?.status}
                     >
                       Cancel Order
-                  </button>
+                  </button></>): (<></>)}
                   <br></br>
                   </td>
                   </tr>

@@ -3,6 +3,7 @@ import orderModel from "../models/orderModel.js";
 
 import { comparePassword, hashPassword } from "./../helpers/authHelper.js";
 import JWT from "jsonwebtoken";
+import nodemailer from "nodemailer";
 
 export const registerController = async (req, res) => {
   try {
@@ -47,11 +48,40 @@ export const registerController = async (req, res) => {
       answer,
     }).save();
 
+    //Welcome Email
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.SENDER_GMAIL,
+    pass: process.env.SENDER_GMAIL_PASSCODE,
+  }
+});
+
+var mailOptions = {
+  from: process.env.SENDER_GMAIL,
+  to: email,
+  subject: 'Welcome to Medicure',
+  text: `Hi ${name},
+    Welcome to Medicure, your one-stop point to buy all medicines. We hope you a very good health. Your account has been successfully created in Medicure. 
+Thank You,
+Team Medicure`,
+  // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'        
+};
+
+transporter.sendMail(mailOptions, function (error, info) {
+  if (error) {
+    console.log(error);
+  } else {
     res.status(201).send({
       success: true,
       message: "User Register Successfully",
       user,
     });
+  }
+});
+    // Welcome email ends
+
+    
   } catch (error) {
     console.log(error);
     res.status(500).send({
@@ -203,7 +233,7 @@ export const updateProfileController = async (req, res) => {
 export const getOrdersController = async (req, res) => {
   try {
     const orders = await orderModel
-      .find({ buyer: req.user._id })
+      .find({ buyer: req.user._id }).sort({createdAt: -1})
       .populate("products", "-photo")
       .populate("buyer", "name");
     res.json(orders);
@@ -219,14 +249,13 @@ export const getOrdersController = async (req, res) => {
 //orders --admin
 export const getAllOrdersController = async (req, res) => {
   try {
-    console.log("Hi");
+    
     const orders = await orderModel
       .find({})
       .populate("products", "-photo")
       .populate("buyer", "name")
       .sort({ createdAt: -1 });
-      console.log("Hello");
-      console.log(orders);
+      
     res.json(orders);
   } catch (error) {
     console.log(error);
@@ -248,7 +277,50 @@ export const orderStatusController = async (req, res) => {
       { status },
       { new: true }
     );
-    res.json(orders);
+    if(orders){
+     // console.log("Hi78");
+      const order = await orderModel.findById({_id:orderId});
+
+      const rt = order.buyer.toString();
+      // console.log(order.buyer);
+      //console.log(rt);
+      const user = await userModel.findById({_id:rt});
+     // console.log("Hello1");
+      //console.log(user.email);
+// Order Status Update email
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.SENDER_GMAIL,
+    pass: process.env.SENDER_GMAIL_PASSCODE,
+  }
+});
+
+var mailOptions = {
+  from: process.env.SENDER_GMAIL,
+  to: user.email,
+  subject: 'Order Status update from Medicure',
+  text: `Hi ${user.name},
+   This is to inform you that your order with Order ID ${order._id} has been ${status}.
+Thank You,
+Team Medicure`,
+  // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'        
+};
+
+transporter.sendMail(mailOptions, function (error, info) {
+  if (error) {
+    console.log(error);
+  } else {
+    return res.status(201).send({success: true, message :`Order ${status} successfully`});
+  }
+});
+
+    //email body ends
+
+    return res.status(201).send({success: true, message : "Order cancelled successfully"});}
+    else{
+      return res.status(200).send({success: false, message: "Failed to cancel the order"});
+    }
   } catch (error) {
     console.log(error);
     res.status(500).send({

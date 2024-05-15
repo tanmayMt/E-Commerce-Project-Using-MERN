@@ -11,11 +11,11 @@ const { Option } = Select;
 const AdminOrders = () => {
   const [status, setStatus] = useState([
 
-    "Processing",
+    "Order Placed",
     "Shipped",
-    "Dispatched",
-    "Deliverd",
-    "Canceled",
+    "Delivered",
+    "Cancelled",
+    "Returned"
   ]);
   const [changeStatus, setCHangeStatus] = useState("");
   const [orders, setOrders] = useState([]);
@@ -35,7 +35,7 @@ const AdminOrders = () => {
 
   const handleChange = async (orderId, value) => {
     try {
-      const { data } = await axios.put(`/api/v1/auth/order-status/${orderId}`, {
+      const { data } = await axios.put(`/api/v1/auth/order-status-admin/${orderId}`, {
         status: value,
       });
       getOrders();

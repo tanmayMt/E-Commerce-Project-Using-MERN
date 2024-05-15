@@ -6,6 +6,8 @@ import fs from "fs";
 import slugify from "slugify";
 import braintree from "braintree";
 import dotenv from "dotenv";
+import userModel from "../models/userModel.js";
+import nodemailer from "nodemailer";
 
 dotenv.config();
 
@@ -345,6 +347,7 @@ export const braintreeTokenController = async (req, res) => {
 //payment
 export const brainTreePaymentController = async (req, res) => {
   try {
+    const u = await userModel.findById({_id:req.user._id});
     const { nonce, cart } = req.body;
     let total = 0;
     cart.map((i) => {
@@ -365,7 +368,36 @@ export const brainTreePaymentController = async (req, res) => {
             payment: result,
             buyer: req.user._id,
           }).save();
-          res.json({ ok: true });
+          
+          //Order placing email//send email
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.SENDER_GMAIL,
+    pass: process.env.SENDER_GMAIL_PASSCODE,
+  }
+});
+
+var mailOptions = {
+  from: process.env.SENDER_GMAIL,
+  to: u.email,
+  subject: 'Thank you for placing order in Medicure',
+  text: `Hi ${u.name},
+    Welcome to Medicure, your one-stop point to buy all medicines. We hope you a very good health. Your order has been successfully placed in Medicure. We will try our best to deliver it as fast as possible. Further details about your order will be emailed to you. Stay tuned.
+Thank You,
+Team Medicure`,
+  // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'        
+};
+
+transporter.sendMail(mailOptions, function (error, info) {
+  if (error) {
+    console.log(error);
+  } else {
+    res.json({ ok: true });
+  }
+});
+//Email code
+          
         } else {
           res.status(500).send(error);
         }

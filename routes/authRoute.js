@@ -50,6 +50,11 @@ router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
 router.put(
   "/order-status/:orderId",
   requireSignIn,
+  orderStatusController
+);
+router.put(
+  "/order-status-admin/:orderId",
+  requireSignIn,
   isAdmin,
   orderStatusController
 );

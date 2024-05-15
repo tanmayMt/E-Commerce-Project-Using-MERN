@@ -143,10 +143,10 @@ const CartPage = () => {
                 {auth?.token ? (
                   <button
                     className="btn btn-outline-warning"
-                    //onClick={() => navigate("/dashboard/user/profile")}
-                    onClick={() => navigate("/dashboard/user/address-update", {
-                        state: "/cart",})
-                    }
+                    onClick={() => navigate("/dashboard/user/profile")}
+                    // onClick={() => navigate("/dashboard/user/address-update", {
+                    //     state: "/cart",})
+                    // }
                       
                     
                   >
