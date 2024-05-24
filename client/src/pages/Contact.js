@@ -15,15 +15,14 @@ const Contact = () => {
         <div className="col-md-4">
           <h1 className="bg-dark p-2 text-white text-center">CONTACT US</h1><b>
           <p className="text-justify mt-2">
-            Any query and info about prodduct feel free to call anytime we 24X7
-            vaialible
+            For any queries or information please reach out to us via email, we are available 24x7 to serve you
           </p>
           <p className="mt-3">
-            <BiMailSend /> : www.tanmay.site
+            <BiMailSend /> : docmate735@gmail.com
           </p>
-          <p className="mt-3">
+          {/* <p className="mt-3">
             <BiPhoneCall /> : +91 8768006557    +91 7698340967
-          </p>
+          </p> */}
           <p className="mt-3">
             <BiSupport /> : 1800-0000-0000 (toll free)
           </p></b>
